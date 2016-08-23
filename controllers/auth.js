@@ -12,7 +12,6 @@ var authenticator = require('../modules/authenticator');
  *
  */
 router.post('/', authenticator.authenticate('local', { session: false }), function(req, res) {
-    /*logger.info('get');*/
   res.json(req.user);
 });
 
@@ -20,7 +19,6 @@ router.post('/', authenticator.authenticate('local', { session: false }), functi
  *
  */
 router.post('/social', authenticator.authenticate('local-social', { session: false }), function(req, res) {
-    /*logger.info('get');*/
   res.json(req.user);
 });
 

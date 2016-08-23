@@ -13,11 +13,6 @@ var LocalStrategy = require('passport-local').Strategy;
 var JwtStrategy = require('passport-jwt').Strategy;
 var ExtractJwt = require('passport-jwt').ExtractJwt;
 
-/*var GithubApi = require('github');
-var FacebookApi = require('fb');
-var InstagramApi = require('instagram-node');
-var FoursquareApi = require('node-foursquare');*/
-
 var User = require('../models/user');
 var Social = require('../models/social');
 var config = require('../config/config.json');
@@ -37,7 +32,7 @@ passport.use(new LocalStrategy(config.passport.strategies.local, function(req, u
       return done(null, false, {message: 'Incorrect username.'});
     }
 
-            // Check password is valid or not
+    // Check password is valid or not
     bcrypt.compare(password, user.password, function(error, res) {
       if (error) {
         return done(error);
@@ -240,6 +235,5 @@ passport.use(new JwtStrategy(config.passport.strategies.jwt, function(req, jwtPa
       return done(error);
   }
 }));
-
 
 module.exports = passport;

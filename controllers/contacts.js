@@ -47,7 +47,7 @@ router.get('/generate', authenticator.authenticate('jwt', {session: false}), fun
 // List contacts
 router.get('/', authenticator.authenticate('jwt', {session: false}), function(req, res) {
   var page = req.query.page ? parseInt(req.query.page) : 1;
-  var limit = req.query.limit ? parseInt(req.query.limit) : 8;
+  var limit = req.query.limit ? parseInt(req.query.limit) : 12;
 
   Contact.find({'owner.id': req.user._id, 'owner.type': req.user.type})
         .skip(parseInt((page - 1) * limit))
