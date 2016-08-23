@@ -57,6 +57,7 @@ passport.use(new LocalStrategy(config.passport.strategies.local, function (req, 
                 req.res.header('Authorization', authToken);
 
                 user.type = 'local';
+                user.password = '*************';
                 return done(null, user);
             });
         });
@@ -215,6 +216,7 @@ passport.use(new JwtStrategy(config.passport.strategies.jwt, function (req, jwtP
                 }
 
                 user.type = 'local';
+                user.password = '*************';
                 done(null, user);
             });
             break;

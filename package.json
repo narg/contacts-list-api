@@ -8,8 +8,8 @@
   "scripts": {
     "start": "node ./app.js",
     "seed": "node ./seed/seed.js",
-    "test": "./node_modules/mocha/bin/mocha ./tests/accept/*.js --timeout 15000",
-    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec",
+    "test": "./node_modules/mocha/bin/mocha test/accept/*.js --timeout 15000",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha test/accept/*.js -- -R spec --timeout 15000",
     "coverage-ui": "npm run coverage && open ./coverage/lcov-report/index.html",
     "coverage-ci": "XUNIT_FILE=test-results.xml ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R xunit-file && ./node_modules/.bin/istanbul report clover"
   },

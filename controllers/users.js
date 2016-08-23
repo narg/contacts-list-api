@@ -7,7 +7,7 @@ var router = express.Router();
 // GET /users
 // Get a list of users
 router.get('/', function (req, res) {
-    User.find({}, function (err, users) {
+    User.find({}, '_id name email username phone cell gender location picture', function (err, users) {
         if (err) {
             return res.status(500).json({
                 error: "Error listing users: " + err
@@ -23,7 +23,7 @@ router.get('/', function (req, res) {
 router.get('/:id', function (req, res) {
     User.findOne({
         _id: req.params.id
-    }, 'name email username gender location picture', function (err, user) {
+    }, '_id name email username phone cell gender location picture', function (err, user) {
         if (err) {
             return res.status(500).json({
                 error: "Error reading user: " + err
