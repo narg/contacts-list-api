@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node ./app.js",
     "seed": "node ./seed/seed.js",
-    "lint": "./node_modules/.bin/eslint --ext .json --ext .js *",
+    "lint": "./node_modules/.bin/eslint --ext .json --ext .js --ext md *",
     "test": "./node_modules/mocha/bin/mocha test/accept/*.js --timeout 15000",
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha test/accept/*.js -- -R spec --timeout 15000",
     "coverage-ui": "npm run coverage && open ./coverage/lcov-report/index.html",
@@ -47,9 +47,14 @@
   "devDependencies": {
     "chai": "3.5.0",
     "chai-http": "3.0.0",
+    "eslint": "3.3.1",
+    "eslint-plugin-json": "1.2.0",
+    "eslint-plugin-markdown": "^1.0.0-beta.2",
     "istanbul": "0.4.5",
     "minimist": "1.2.0",
     "mocha": "3.0.2",
+    "nock": "8.0.0",
+    "sinon": "1.17.5",
     "xunit-file": "1.0.0"
   }
 }

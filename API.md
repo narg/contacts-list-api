@@ -18,7 +18,7 @@ Return user info
 
 * **Data Params** 
   
-    ```javascript
+    ```json
     {
       "username": "tinywolf709",
       "password": "rockon"
@@ -31,15 +31,15 @@ Return user info
   
     **Header:**
     
-    ```javascript
+    ```json
     {
-        Authorization: "************************"
+        "Authorization": "************************"
     }
     ```
 
     **Content:**
 
-    ```javascript
+    ```json
     {
       "type": "local",
       "_id": "57bc421fba6036fad8cad7c6",
@@ -92,7 +92,7 @@ Return user info
 
 * **Data Params**
 
-    ```javascript
+    ```json
     {
       "id": "123456789123456",
       "provider": "facebook",
@@ -120,15 +120,15 @@ Return user info
   
     **Header:**
     
-    ```javascript
+    ```json
     {
-        Authorization: "************************"
+        "Authorization": "************************"
     }
     ```
 
     **Content:**
 
-    ```javascript
+    ```json
     {
       "type": "social",
       "_id": "57bc29267e2f8692d1afaa26",
@@ -164,9 +164,9 @@ Returns a list of Contacts
   
 * **Header Params**
 
-    ```javascript
+    ```json
     {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
       "Authorization": "JWT ************************"
     }    
     ```
@@ -180,7 +180,7 @@ Returns a list of Contacts
   * **Code:** 200 <br />
     **Content:**
 
-    ```javascript
+    ```json
     {
       "contacts": [
         {
@@ -245,7 +245,7 @@ Returns a list of Contacts
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:**
   
-    ```javascript
+    ```json
     { "error": "Error listing contacts" }
     ```
 
@@ -270,9 +270,9 @@ Returns a list of Contacts
 
 * **Header Params**
 
-    ```javascript
+    ```json
     {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
       "Authorization": "JWT ************************"
     }    
     ```
@@ -286,7 +286,7 @@ Returns a list of Contacts
   * **Code:** 200 <br />
     **Content:**
 
-    ```javascript
+    ```json
     {
       "_id": "57bc48c1cc261778da668c5e",
       "owner": {
@@ -318,7 +318,7 @@ Returns a list of Contacts
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:**
 
-    ```javascript
+    ```json
     { "error": "Error reading contact" }
     ```
 
@@ -348,16 +348,16 @@ Returns a list of Contacts
 
 * **Header Params**
       
-    ```javascript
+    ```json
     {
-      Content-Type: "application/json"
-      Authorization: "JWT ************************"
+      "Content-Type": "application/json",
+      "Authorization": "JWT ************************"
     }
     ```
 
 * **Data Params**
 
-    ```javascript
+    ```json
     {
       "owner": {
         "id": "57bc421fba6036fad8cad7c6",
@@ -387,7 +387,7 @@ Returns a list of Contacts
   * **Code:** 200 <br />
     **Content:**
 
-    ```javascript
+    ```json
     {
       "_id": "57bc48c1cc261778da668c5e",
       "owner": {
@@ -419,7 +419,7 @@ Returns a list of Contacts
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:**
 
-    ```javascript
+    ```json
     { "error": "Error updating contact" }
     ```
 
@@ -447,16 +447,16 @@ Returns a list of Contacts
 
 * **Header Params**
       
-    ```javascript
+    ```json
     {
-      Content-Type: "application/json"
-      Authorization: "JWT ************************"
+      "Content-Type": "application/json",
+      "Authorization": "JWT ************************"
     }
     ```
 
 * **Data Params**
 
-    ```javascript
+    ```json
     {
       "name": {
         "title": "mr",
@@ -482,7 +482,7 @@ Returns a list of Contacts
   * **Code:** 200 <br />
     **Content:**
 
-    ```javascript
+    ```json
     {
       "_id": "57bc48c1cc261778da668c5e",
       "owner": {
@@ -514,7 +514,7 @@ Returns a list of Contacts
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:**
 
-    ```javascript
+    ```json
     { "error": "Error creating contact" }
     ```
 
@@ -544,7 +544,7 @@ Returns a list of Users
   * **Code:** 200 <br />
     **Content:**
 
-    ```javascript
+    ```json
     [{
       "_id": "57b330de848a005e48f5de94",
       "gender": "female",
@@ -599,21 +599,8 @@ Returns a list of Users
 * **Code:** 500 INTERNAL SERVER ERROR <br />
   **Content:**
 
-    ```javascript
+    ```json
     { "error": "Error listing users" }
-    ```
-
-* **Sample Call:**
-
-    ```javascript
-    $.ajax({
-      url: "/users",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
     ```
 
 
@@ -644,7 +631,7 @@ Returns a list of Users
   * **Code:** 200 <br />
     **Content:**
 
-    ```javascript
+    ```json
     {
       "_id": "57b330de848a005e48f5de94",
       "gender": "female",
@@ -678,20 +665,6 @@ Returns a list of Users
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:**
 
-    ```javascript
+    ```json
     { "error": "Error reading user" }
     ```
-
-* **Sample Call:**
-
-    ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
-    ```
-

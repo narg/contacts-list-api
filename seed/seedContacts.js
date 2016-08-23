@@ -4,9 +4,7 @@
  * To seed, run `npm run-script seed`
  */
 
-var _ = require('lodash');
 var async = require('async');
-var bcrypt = require('bcrypt');
 var moment = require('moment');
 var mongoose = require('mongoose');
 var seeder = require('mongoose-seed');

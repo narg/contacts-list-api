@@ -35,5 +35,9 @@
       "after": true
     }],
     "curly": ["error", "all"]
-  }
+  },
+  "plugins": [
+    "json",
+    "markdown"
+  ]
 }
