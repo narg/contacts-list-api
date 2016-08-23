@@ -2,6 +2,10 @@
 
 This sample project will give you simple login with username, password and social platforms
 
+### Contact List Web Client
+
+https://github.com/narg/contacts-list
+
 ## Pre-requisites
 
 To get started, you'll need to have the following requirements installed
@@ -30,13 +34,17 @@ To get started, you'll need to have the following requirements installed
 
 ## Running tests
 
+Test Coverage Summary
+
+![Test Coverage Summary](public/images/test-coverage-summary.png)
+
 `npm test`
 
 ## Running coverage report
 
 `npm run coverage-ui`
 
-## Running coverage report
+## Running linter report
 
 `npm run lint`
 

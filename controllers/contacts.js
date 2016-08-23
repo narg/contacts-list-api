@@ -16,19 +16,6 @@ var Contact = require('../models/contact');
  * This is a helper controller to generate contacts if user does not have any contact. Do not use in a production mode
  */
 router.get('/generate', authenticator.authenticate('jwt', {session: false}), function(req, res) {
-  Contact.count({'owner.id': req.user._id, 'owner.type': req.user.type}, function(error, count) {
-    if (error) {
-      return res.status(500).json({
-        error: "Error counting contacts: " + error
-      });
-    }
-
-    if (count !== 0) {
-      return res.status(500).json({
-        error: "User has contacts already!"
-      });
-    }
-
     var shell = require('shelljs');
     shell.exec('node seed/seedContacts.js --id=' + req.user._id + ' --type=' + req.user.type, function(error) {
       if (error) {
@@ -41,7 +28,6 @@ router.get('/generate', authenticator.authenticate('jwt', {session: false}), fun
         status: 'Contacts generated for user successfully!'
       });
     });
-  });
 });
 
 // List contacts

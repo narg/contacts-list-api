@@ -8,18 +8,19 @@ var express = require('express');
 var router = express.Router();
 var authenticator = require('../modules/authenticator');
 
-/**
- *
- */
-router.post('/', authenticator.authenticate('local', { session: false }), function(req, res) {
+// To avoid duplicate blocks on sonar new function defined
+var authenticationCallback = function(req, res) {
   res.json(req.user);
-});
+};
 
 /**
- *
+ * Authentication with username and password
  */
-router.post('/social', authenticator.authenticate('local-social', { session: false }), function(req, res) {
-  res.json(req.user);
-});
+router.post('/', authenticator.authenticate('local', { session: false }), authenticationCallback);
+
+/**
+ * Authentication with access token for social platforms
+ */
+router.post('/social', authenticator.authenticate('local-social', { session: false }), authenticationCallback);
 
 module.exports = router;
