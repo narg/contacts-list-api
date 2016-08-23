@@ -1,0 +1,50 @@
+{
+  "databases": {
+    "mongodb": {
+
+    },
+    "redis": {
+      "host": "127.0.0.1"
+    }
+  },
+  "passport": {
+    "strategies": {
+      "local": {
+        "usernameField": "username",
+        "passwordField": "password",
+        "passReqToCallback": true
+      },
+      "jwt": {
+        "secretOrKey": "",
+        "authScheme": "JWT",
+        "tokenBodyField": "auth_token",
+        "tokenQueryParameterName": "auth_token",
+        "passReqToCallback": true
+      },
+      "github": {
+        "clientId": "",
+        "clientSecret": ""
+      },
+      "facebook": {
+        "clientId": "",
+        "clientSecret": ""
+      },
+      "twitter": {
+        "consumerKey": "",
+        "consumerSecret": ""
+      },
+      "linkedin": {
+        "consumerKey": "",
+        "consumerSecret": ""
+      },
+      "instagram": {
+        "clientId": "",
+        "clientSecret": ""
+      },
+      "foursquare": {
+        "clientId": "",
+        "clientSecret": ""
+      }
+    }
+  }
+}

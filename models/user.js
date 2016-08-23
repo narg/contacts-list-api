@@ -1,3 +1,9 @@
+/**
+ *
+ * @since 21/08/16
+ * @author Necip Arg <neciparg@gmail.com>
+ */
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -8,16 +14,12 @@ var User = mongoose.model('User', {
   email: String,
   username: String,
   password: String,
-  salt: String,
-  md5: String,
-  sha1: String,
-  sha256: String,
-  registered: Number,
-  dob: Number,
   phone: String,
   cell: String,
-  PPS: String,
-  picture: Schema.Types.Mixed
+  picture: Schema.Types.Mixed,
+  type: String,
+  registered: Number,
+  updated: Number
 });
 
 module.exports = User;

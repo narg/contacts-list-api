@@ -1,28 +1,54 @@
 {
-  "name": "user-api",
+  "name": "contacts-list-api",
   "version": "1.0.0",
-  "description": "Basic RESTful User Management API",
+  "description": "Contacts List RESTful API",
   "main": "app.js",
   "author": "Red Hat",
   "license": "MIT",
   "scripts": {
     "start": "node ./app.js",
     "seed": "node ./seed/seed.js",
-    "test": "./node_modules/mocha/bin/mocha ./tests/accept/*.js --timeout 15000"
+    "test": "./node_modules/mocha/bin/mocha ./tests/accept/*.js --timeout 15000",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec",
+    "coverage-ui": "npm run coverage && open ./coverage/lcov-report/index.html",
+    "coverage-ci": "XUNIT_FILE=test-results.xml ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R xunit-file && ./node_modules/.bin/istanbul report clover"
   },
   "dependencies": {
-    "cors": "^2.7.1",
-    "ejs": "^2.5.1",
-    "express": "^4.14.0",
-    "marked": "^0.3.6",
-    "mongoose": "^4.5.9",
-    "mongoose-seed": "^0.3.1",
-    "morgan": "^1.7.0",
-    "winston": "^2.2.0"
+    "async": "2.0.1",
+    "bcrypt": "0.8.7",
+    "body-parser": "1.15.2",
+    "cors": "2.7.1",
+    "ejs": "2.5.1",
+    "express": "4.14.0",
+    "fb": "1.1.1",
+    "github": "2.5.1",
+    "instagram-node": "0.5.8",
+    "jsonwebtoken": "7.1.9",
+    "lodash": "4.15.0",
+    "marked": "0.3.6",
+    "moment": "2.14.1",
+    "mongoose": "4.5.9",
+    "mongoose-seed": "0.3.1",
+    "morgan": "1.7.0",
+    "node-foursquare": "0.3.0",
+    "passport": "0.3.2",
+    "passport-facebook": "2.1.1",
+    "passport-foursquare": "1.0.0",
+    "passport-http-bearer": "1.0.1",
+    "passport-instagram": "1.0.0",
+    "passport-jwt": "2.1.0",
+    "passport-linkedin": "1.0.0",
+    "passport-local": "1.0.0",
+    "passport-twitter": "1.0.4",
+    "shelljs": "0.7.3",
+    "winston": "2.2.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-http": "^3.0.0",
-    "mocha": "^3.0.2"
+    "chai": "3.5.0",
+    "chai-http": "3.0.0",
+    "istanbul": "0.4.5",
+    "minimist": "1.2.0",
+    "mocha": "3.0.2",
+    "xunit-file": "1.0.0"
   }
 }
