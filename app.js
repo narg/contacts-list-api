@@ -12,6 +12,7 @@ var authController = require('./controllers/auth');
 var userController = require('./controllers/users');
 var contactController = require('./controllers/contacts');
 
+var config = require('./config/config.json');
 var app = express();
 
 // Add middleware
@@ -51,7 +52,7 @@ app.use('/contacts', contactController);
 if (require.main === module) {
   // Only connect to MongoDB if app.js is run
   // If require'd (e.g. in tests), let these tests establish a DB connection themselves
-  mongoose.connect('mongodb://localhost/contacts');
+  mongoose.connect('mongodb://' + config.databases.mongodb.host +'/contacts');
 
   // Only listen when app.js is run - acceptance tests will listen on another port
   app.listen(8000, function() {

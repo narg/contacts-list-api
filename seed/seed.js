@@ -9,9 +9,10 @@ var bcrypt = require('bcrypt');
 var moment = require('moment');
 var seeder = require('mongoose-seed');
 var logger = require('winston');
+var config = require('../config/config.json');
 
 var seed = function(cb) {
-  seeder.connect('mongodb://localhost/contacts', function() {
+  seeder.connect('mongodb://' + config.databases.mongodb.host +'/contacts', function() {
 
     // Load the User model
     seeder.loadModels([

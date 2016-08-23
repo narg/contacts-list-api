@@ -19,9 +19,13 @@ To get started, you'll need to have the following requirements installed
 	
 	# Ensure `mongod` is running, either as a service or in another shell
 	git clone <this repo>
+	# Ensure config/config.json is updated
 	cp config/config.sample.json config/config.json
+	# Install npm dependencies
 	npm install
-	npm run seed # Seed the DB with local users
+	# Optional: Seed the DB with local users
+	npm run seed
+	# Run project
 	npm start
 
 ## Running tests
