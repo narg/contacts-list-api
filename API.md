@@ -1,6 +1,523 @@
 ## API Documentation
 
-This sample project will give you a small RESTful API to build your template against. It is built using JavaScript/Node.js (our language of choice), ExpressJS (a small, lightweight web MVC framework) & Mongoose (a MongoDB object modelling library).
+**Authorization by username and password**
+----
+Return user info
+
+* **URL**
+
+  `/auth`
+
+* **Method:**
+
+  `POST`
+
+*  **URL Params**
+
+  None
+
+* **Data Params** 
+  
+    ```javascript
+    {
+      "username": "tinywolf709",
+      "password": "rockon"
+    }
+    ```
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+  
+    **Header:**
+    
+    ```javascript
+    {
+        Authorization: "************************"
+    }
+    ```
+
+    **Content:**
+
+    ```javascript
+    {
+      "type": "local",
+      "_id": "57bc421fba6036fad8cad7c6",
+      "gender": "female",
+      "name": {
+        "title": "miss",
+        "first": "alison",
+        "last": "reid"
+      },
+      "location": {
+        "street": "1097 the avenue",
+        "city": "Newbridge",
+        "state": "ohio",
+        "zip": 28782
+      },
+      "email": "alison.reid@example.com",
+      "username": "tinywolf709",
+      "phone": "031-541-9181",
+      "cell": "081-647-4650",
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/60.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/60.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/60.jpg"
+      },
+      "registered": 1471955479,
+      "__v": 0
+    }
+    ```
+
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+
+
+**Authorization by social platform**
+----
+Return user info
+
+* **URL**
+
+  `/auth/social`
+
+* **Method:**
+
+  `POST`
+
+*  **URL Params**
+
+  None
+
+* **Data Params**
+
+    ```javascript
+    {
+      "id": "123456789123456",
+      "provider": "facebook",
+      "accessToken": "*****",
+      "refreshToken": "undefined",
+      "data": {
+        "id": "123456789123456",
+        "username": "undefined",
+        "displayName": "Necip Arg",
+        "name": {
+          "familyName": "undefined",
+          "givenName": "undefined",
+          "middleName": "undefined"
+        },
+        "gender": "undefined",
+        "profileUrl": "undefined",
+        "provider": "facebook"
+      }
+    }  
+    ```
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+  
+    **Header:**
+    
+    ```javascript
+    {
+        Authorization: "************************"
+    }
+    ```
+
+    **Content:**
+
+    ```javascript
+    {
+      "type": "social",
+      "_id": "57bc29267e2f8692d1afaa26",
+      "updated": 1471956870,
+      "registered": 1471949094,
+      "name": "Necip Arg",
+      "provider": "facebook",
+      "platformId": "10154182615377839"
+    }
+    ```
+
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+
+
+
+**List Contacts**
+----
+Returns a list of Contacts
+
+* **URL**
+
+  `/contacts`
+
+* **Method:**
+
+  `GET`
+
+*  **URL Params**
+
+  None
+  
+* **Header Params**
+
+    ```javascript
+    {
+      "Content-Type": "application/json"
+      "Authorization": "JWT ************************"
+    }    
+    ```
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:**
+
+    ```javascript
+    {
+      "contacts": [
+        {
+          "_id": "57bc48c1cc261778da668c5e",
+          "owner": {
+            "id": "57bc421fba6036fad8cad7c6",
+            "type": "local"
+          },
+          "name": {
+            "title": "mr",
+            "first": "ricky",
+            "last": "robertson"
+          },
+          "gender": "male",
+          "location": {
+            "street": "1858 jones road",
+            "city": "Killarney",
+            "state": "virginia",
+            "zip": 67647
+          },
+          "email": "ricky.robertson@example.com",
+          "phone": "041-060-3589",
+          "cell": "081-733-6421",
+          "picture": "https://randomuser.me/api/portraits/men/76.jpg",
+          "__v": 0
+        },
+        {
+          "_id": "57bc48c1cc261778da668c5f",
+          "owner": {
+            "id": "57bc421fba6036fad8cad7c6",
+            "type": "local"
+          },
+          "name": {
+            "title": "ms",
+            "first": "barb",
+            "last": "reed"
+          },
+          "gender": "female",
+          "location": {
+            "street": "6819 south street",
+            "city": "Passage West",
+            "state": "massachusetts",
+            "zip": 14086
+          },
+          "email": "barb.reed@example.com",
+          "phone": "011-434-6413",
+          "cell": "081-844-2224",
+          "picture": "https://randomuser.me/api/portraits/women/84.jpg",
+          "__v": 0
+        }
+      ],
+      "pagination": {
+        "page": 3,
+        "pageCount": 50,
+        "totalCount": 100
+      }
+    }
+    ```
+
+* **Error Response:**
+  
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:**
+  
+    ```javascript
+    { "error": "Error listing contacts" }
+    ```
+
+ 
+**Get Contact**
+----
+  Returns JSON data about a single contact.
+
+* **URL**
+
+  `/contacts/:id`
+
+* **Method:**
+
+  `GET`
+
+*  **URL Params**
+
+   **Required:**
+
+   `id=[string]`
+
+* **Header Params**
+
+    ```javascript
+    {
+      "Content-Type": "application/json"
+      "Authorization": "JWT ************************"
+    }    
+    ```
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:**
+
+    ```javascript
+    {
+      "_id": "57bc48c1cc261778da668c5e",
+      "owner": {
+        "id": "57bc421fba6036fad8cad7c6",
+        "type": "local"
+      },
+      "name": {
+        "title": "mr",
+        "first": "ricky",
+        "last": "robertson"
+      },
+      "gender": "male",
+      "location": {
+        "street": "1858 jones road",
+        "city": "Killarney",
+        "state": "virginia",
+        "zip": 67647
+      },
+      "email": "ricky.robertson@example.com",
+      "phone": "041-060-3589",
+      "cell": "081-733-6421",
+      "picture": "https://randomuser.me/api/portraits/men/76.jpg",
+      "__v": 0
+    }
+    ```
+
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:**
+
+    ```javascript
+    { "error": "Error reading contact" }
+    ```
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:**
+
+    None
+
+
+**Update Contact**
+----
+  Returns updated JSON data about a target contact.
+
+* **URL**
+
+  `/contacts/:id`
+
+* **Method:**
+
+  `PUT`
+
+*  **URL Params**
+
+   **Required:**
+
+   `id=[string]`
+
+* **Header Params**
+      
+    ```javascript
+    {
+      Content-Type: "application/json"
+      Authorization: "JWT ************************"
+    }
+    ```
+
+* **Data Params**
+
+    ```javascript
+    {
+      "owner": {
+        "id": "57bc421fba6036fad8cad7c6",
+        "type": "local"
+      },
+      "name": {
+        "title": "mr",
+        "first": "ricky",
+        "last": "robertson"
+      },
+      "gender": "male",
+      "location": {
+        "street": "1858 jones road",
+        "city": "Killarney",
+        "state": "virginia",
+        "zip": 67647
+      },
+      "email": "ricky.robertson@example.com",
+      "phone": "041-060-3589",
+      "cell": "081-733-6421",
+      "picture": "https://randomuser.me/api/portraits/men/76.jpg"
+    }
+    ```
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:**
+
+    ```javascript
+    {
+      "_id": "57bc48c1cc261778da668c5e",
+      "owner": {
+        "id": "57bc421fba6036fad8cad7c6",
+        "type": "local"
+      },
+      "name": {
+        "title": "mr",
+        "first": "ricky",
+        "last": "robertson"
+      },
+      "gender": "male",
+      "location": {
+        "street": "1858 jones road",
+        "city": "Killarney",
+        "state": "virginia",
+        "zip": 67647
+      },
+      "email": "ricky.robertson@example.com",
+      "phone": "041-060-3589",
+      "cell": "081-733-6421",
+      "picture": "https://randomuser.me/api/portraits/men/76.jpg",
+      "__v": 0
+    }
+    ```
+
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:**
+
+    ```javascript
+    { "error": "Error updating contact" }
+    ```
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:**
+
+    None
+
+
+**Create Contact**
+----
+  Returns JSON data about created contact.
+
+* **URL**
+
+  `/contacts`
+
+* **Method:**
+
+  `POST`
+
+*  **URL Params**
+
+   None
+
+* **Header Params**
+      
+    ```javascript
+    {
+      Content-Type: "application/json"
+      Authorization: "JWT ************************"
+    }
+    ```
+
+* **Data Params**
+
+    ```javascript
+    {
+      "name": {
+        "title": "mr",
+        "first": "ricky",
+        "last": "robertson"
+      },
+      "gender": "male",
+      "location": {
+        "street": "1858 jones road",
+        "city": "Killarney",
+        "state": "virginia",
+        "zip": 67647
+      },
+      "email": "ricky.robertson@example.com",
+      "phone": "041-060-3589",
+      "cell": "081-733-6421",
+      "picture": "https://randomuser.me/api/portraits/men/76.jpg"
+    }
+    ```
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:**
+
+    ```javascript
+    {
+      "_id": "57bc48c1cc261778da668c5e",
+      "owner": {
+        "id": "57bc421fba6036fad8cad7c6",
+        "type": "local"
+      },
+      "name": {
+        "title": "mr",
+        "first": "ricky",
+        "last": "robertson"
+      },
+      "gender": "male",
+      "location": {
+        "street": "1858 jones road",
+        "city": "Killarney",
+        "state": "virginia",
+        "zip": 67647
+      },
+      "email": "ricky.robertson@example.com",
+      "phone": "041-060-3589",
+      "cell": "081-733-6421",
+      "picture": "https://randomuser.me/api/portraits/men/76.jpg",
+      "__v": 0
+    }
+    ```
+
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:**
+
+    ```javascript
+    { "error": "Error creating contact" }
+    ```
+
 
 **List Users**
 ----
@@ -44,16 +561,7 @@ Returns a list of Users
       },
       "email": "olivia.young@example.com",
       "username": "crazykoala938",
-      "password": "malibu",
-      "salt": "78TEnNQ1",
-      "md5": "9bebcc9d890f8c9e04c9e40fc1f41476",
-      "sha1": "36d6a69cabff0ad780a3dcceb4e94d44edb62fc6",
-      "sha256": "9e39c873967f52d67e8d052aad87daf4b63d5464a27de982b64abfe9b208efc8",
       "registered": 1411100094,
-      "dob": 818810543,
-      "phone": "011-475-1126",
-      "cell": "081-725-2254",
-      "PPS": "4335321T",
       "picture": {
         "large": "https://randomuser.me/api/portraits/women/20.jpg",
         "medium": "https://randomuser.me/api/portraits/med/women/20.jpg",
@@ -76,16 +584,7 @@ Returns a list of Users
       },
       "email": "susanne.russell@example.com",
       "username": "ticklishswan833",
-      "password": "reader",
-      "salt": "Qp38szSx",
-      "md5": "57f8e3404f1926bf3fa50c152f037a33",
-      "sha1": "43bf7f8fe85e46957cdcb33be61f19dfe9014317",
-      "sha256": "c12980f91c86dae1ba9d4d880e8d51645e59f95c6b3d1f28854891d6587b39b5",
       "registered": 1345063087,
-      "dob": 481147180,
-      "phone": "061-032-9311",
-      "cell": "081-609-1066",
-      "PPS": "7348900T",
       "picture": {
         "large": "https://randomuser.me/api/portraits/women/69.jpg",
         "medium": "https://randomuser.me/api/portraits/med/women/69.jpg",
@@ -100,22 +599,22 @@ Returns a list of Users
 * **Code:** 500 INTERNAL SERVER ERROR <br />
   **Content:**
 
-  ```javascript
-  { "error": "Error listing users" }
-  ```
+    ```javascript
+    { "error": "Error listing users" }
+    ```
 
 * **Sample Call:**
 
-  ```javascript
-  $.ajax({
-    url: "/users",
-    dataType: "json",
-    type : "GET",
-    success : function(r) {
-      console.log(r);
-    }
-  });
-  ```
+    ```javascript
+    $.ajax({
+      url: "/users",
+      dataType: "json",
+      type : "GET",
+      success : function(r) {
+        console.log(r);
+      }
+    });
+    ```
 
 
 **Show User**
@@ -162,16 +661,9 @@ Returns a list of Users
       },
       "email": "olivia.young@example.com",
       "username": "crazykoala938",
-      "password": "malibu",
-      "salt": "78TEnNQ1",
-      "md5": "9bebcc9d890f8c9e04c9e40fc1f41476",
-      "sha1": "36d6a69cabff0ad780a3dcceb4e94d44edb62fc6",
-      "sha256": "9e39c873967f52d67e8d052aad87daf4b63d5464a27de982b64abfe9b208efc8",
       "registered": 1411100094,
-      "dob": 818810543,
       "phone": "011-475-1126",
       "cell": "081-725-2254",
-      "PPS": "4335321T",
       "picture": {
         "large": "https://randomuser.me/api/portraits/women/20.jpg",
         "medium": "https://randomuser.me/api/portraits/med/women/20.jpg",
@@ -192,15 +684,14 @@ Returns a list of Users
 
 * **Sample Call:**
 
-  ```javascript
-  $.ajax({
-    url: "/users/1",
-    dataType: "json",
-    type : "GET",
-    success : function(r) {
-      console.log(r);
-    }
-  });
-  ```
+    ```javascript
+    $.ajax({
+      url: "/users/1",
+      dataType: "json",
+      type : "GET",
+      success : function(r) {
+        console.log(r);
+      }
+    });
+    ```
 
-Inspired by https://gist.github.com/iros/3426278

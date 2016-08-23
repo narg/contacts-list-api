@@ -1,6 +1,6 @@
-# Users API
+# Contacts List  RESTfull API
 
-This sample project will give you a minimal RESTful API to build your template against. It only implements user listing and reading - feel free to add other actions (e.g. update, delete, create) as you see fit. It is built using JavaScript/Node.js (our language of choice), ExpressJS (a small, lightweight web MVC framework) & Mongoose (a MongoDB object modelling library).
+This sample project will give you simple login with username, password and social platforms
 
 ## Pre-requisites
 
@@ -19,13 +19,22 @@ To get started, you'll need to have the following requirements installed
 	
 	# Ensure `mongod` is running, either as a service or in another shell
 	git clone <this repo>
+	cp config/config.sample.json config/config.json
 	npm install
-	npm run-script seed # Seed the DB with Users
+	npm run seed # Seed the DB with local users
 	npm start
 
 ## Running tests
 
 `npm test`
+
+## Running coverage report
+
+`npm run coverage-ui`
+
+## Running coverage report
+
+`npm run lint`
 
 ## API documentation
 
