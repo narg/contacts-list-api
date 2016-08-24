@@ -44,6 +44,12 @@ Test Coverage Summary
 
 `npm run coverage-ui`
 
+## Running Sonar Report
+
+<sup>*</sup>See http://www.sonarqube.org/
+
+`sonar-runner`
+
 ## Running linter report
 
 `npm run lint`
